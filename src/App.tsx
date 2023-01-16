@@ -16,7 +16,24 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <h3>Simple Bar Series</h3>
+        <h3>Stacked Bar Series</h3>
+      </header>
       <section>
+        <h2>Visx XyChart</h2>
+        <VisxXYChart
+          {...chartSize}
+          xScale={{ type: "band", paddingInner: 0.1 }}
+          yScale={{ type: "linear" }}
+        >
+          <VisxBarSeries
+            dataKey="bar-1"
+            data={data}
+            xAccessor={(d: Datum) => d["date"]}
+            yAccessor={(d: Datum) => d["totalVisits"]}
+          />
+        </VisxXYChart>
         <VisxXYChart
           {...chartSize}
           xScale={{ type: "band", paddingInner: 0.1 }}
@@ -39,6 +56,7 @@ function App() {
         </VisxXYChart>
       </section>
       <section>
+        <h2>Wrapped component</h2>
         <XYChart
           dataSource={data}
           {...chartSize}
@@ -47,12 +65,37 @@ function App() {
         >
           <BarSeries
             data={data}
-            dataKey="bar-2-1"
+            dataKey="bar-2-2"
             accessors={{
               value: (d: Datum) => d["totalVisits"],
               dimension: (d: Datum) => d["date"],
             }}
           />
+        </XYChart>
+        <XYChart
+          dataSource={data}
+          {...chartSize}
+          xScale={{ type: "band", paddingInner: 0.1 }}
+          yScale={{ type: "linear" }}
+        >
+          <BarStack>
+            <BarSeries
+              data={data}
+              dataKey="bar-2-1"
+              accessors={{
+                dimension: (d: Datum) => d["date"],
+                value: (d: Datum) => d["specialVisits"],
+              }}
+            />
+            <BarSeries
+              data={data}
+              dataKey="bar-2-2"
+              accessors={{
+                dimension: (d: Datum) => d["date"],
+                value: (d: Datum) => d["totalVisits"],
+              }}
+            />
+          </BarStack>
         </XYChart>
       </section>
     </div>

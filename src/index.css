@@ -24,3 +24,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.App {
+  width: fit-content;
+}
+
+h2,
+h3 {
+  text-align: center;
+}
+
+h2 {
+  text-orientation: sideways;
+  writing-mode: vertical-rl;
+}
+
+section,
+header {
+  display: grid;
+  grid-template-columns: 60px auto auto;
+}
+
+header {
+  grid-template-areas: ". simple stacked";
+}
+
+header h3:first-of-type {
+  grid-area: simple;
+}
+
+header h3:last-of-type {
+  grid-area: stacked;
+}

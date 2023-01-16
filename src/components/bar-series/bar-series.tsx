@@ -1,7 +1,6 @@
 import React from "react";
-import { BarSeries as Visx_BarSeries } from "@visx/xychart";
-import { useXYChartContext } from "../../xy-chart-context";
-import { DataSource, DatumKey, DatumValue, IDatum } from "../../types";
+import { BarSeries as VisxBarSeries } from "@visx/xychart";
+import { DataSource, DatumValue, IDatum } from "../../types";
 
 type Props<D extends IDatum> = {
   data: DataSource<D>;
@@ -20,6 +19,6 @@ export const BarSeries = <D extends IDatum>({
   const yAccessor = accessors.value;
 
   return (
-    <Visx_BarSeries xAccessor={xAccessor} yAccessor={yAccessor} {...props} />
+    <VisxBarSeries xAccessor={xAccessor} yAccessor={yAccessor} {...props} />
   );
 };
