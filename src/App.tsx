@@ -80,17 +80,21 @@ function App() {
           yScale={{ type: "linear" }}
         >
           <BarStack>
-            <VisxBarSeries
+            <BarSeries
               dataKey="wrapped-stack-special"
               data={data}
-              xAccessor={(d: Datum) => d["date"]}
-              yAccessor={(d: Datum) => d["specialVisits"]}
+              accessors={{
+                dimension: (d: Datum) => d["date"],
+                value: (d: Datum) => d["specialVisits"],
+              }}
             />
-            <VisxBarSeries
+            <BarSeries
               dataKey="wraped-stack-total"
               data={data}
-              xAccessor={(d: Datum) => d["date"]}
-              yAccessor={(d: Datum) => d["totalVisits"]}
+              accessors={{
+                dimension: (d: Datum) => d["date"],
+                value: (d: Datum) => d["totalVisits"],
+              }}
             />
           </BarStack>
         </XYChart>
