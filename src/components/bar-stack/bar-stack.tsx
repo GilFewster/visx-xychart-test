@@ -1,11 +1,5 @@
 import React, { ComponentProps, useContext } from "react";
-import {
-  BarSeries,
-  BarStack as VisxBarStack,
-  DataContext,
-} from "@visx/xychart";
-import { DataSource, DatumValue, IDatum } from "../../types";
-import { Datum } from "../../mock-data/daily-sessions";
+import { BarStack as VisxBarStack, DataContext } from "@visx/xychart";
 
 type Props = ComponentProps<typeof VisxBarStack>;
 

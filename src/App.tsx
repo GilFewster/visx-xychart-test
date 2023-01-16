@@ -86,19 +86,11 @@ function App() {
               xAccessor={(d: Datum) => d["date"]}
               yAccessor={(d: Datum) => d["specialVisits"]}
             />
-            {/* <VisxBarSeries
+            <VisxBarSeries
               dataKey="wraped-stack-total"
               data={data}
               xAccessor={(d: Datum) => d["date"]}
               yAccessor={(d: Datum) => d["totalVisits"]}
-            /> */}
-            <BarSeries
-              data={data}
-              dataKey="wrapped-stack-total"
-              accessors={{
-                value: (d: Datum) => d["totalVisits"],
-                dimension: (d: Datum) => d["date"],
-              }}
             />
           </BarStack>
         </XYChart>

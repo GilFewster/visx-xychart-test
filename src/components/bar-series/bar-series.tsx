@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BarSeries as VisxBarSeries, DataContext } from "@visx/xychart";
+import { BarSeries as VisxBarSeries } from "@visx/xychart";
 import { DataSource, DatumValue, IDatum } from "../../types";
 
 type Props<D extends IDatum> = {
