@@ -1,12 +1,12 @@
 import { PickD3Scale } from "@visx/scale";
 
-export type DatumValue = string | number | boolean;
 export interface IDatum {
   [key: string]: DatumValue;
 }
 
-export type DataSource<D extends IDatum> = D[];
+export type DatumValue = string | number | boolean;
 export type DatumKey<D extends IDatum> = keyof D;
+export type DataSource<D extends IDatum> = D[];
 
 const getValueAt = <D extends IDatum>(
   s: DataSource<D>,

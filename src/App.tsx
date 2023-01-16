@@ -1,15 +1,14 @@
 import React from "react";
 
 import {
-  BarSeries as Visx_BarSeries,
+  BarSeries as VisxBarSeries,
   BarStack,
-  XYChart as Visx_XYChart,
+  XYChart as VisxXYChart,
 } from "@visx/xychart";
 
 import { dailySessions, Datum } from "./mock-data/daily-sessions";
 import { XYChart } from "./components/xy-chart";
 import { BarSeries } from "./components/bar-series";
-import { IDatum } from "./types";
 
 function App() {
   const data = dailySessions;
@@ -18,26 +17,26 @@ function App() {
   return (
     <div className="App">
       <section>
-        <Visx_XYChart
+        <VisxXYChart
           {...chartSize}
           xScale={{ type: "band", paddingInner: 0.1 }}
           yScale={{ type: "linear" }}
         >
           <BarStack>
-            <Visx_BarSeries
+            <VisxBarSeries
               dataKey="bar-1"
               data={data}
               xAccessor={(d: Datum) => d["date"]}
               yAccessor={(d: Datum) => d["specialVisits"]}
             />
-            <Visx_BarSeries
+            <VisxBarSeries
               dataKey="bar-2"
               data={data}
               xAccessor={(d: Datum) => d["date"]}
               yAccessor={(d: Datum) => d["totalVisits"]}
             />
           </BarStack>
-        </Visx_XYChart>
+        </VisxXYChart>
       </section>
       <section>
         <XYChart
