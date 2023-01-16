@@ -2,13 +2,14 @@ import React from "react";
 
 import {
   BarSeries as VisxBarSeries,
-  BarStack,
+  BarStack as VisxBarStack,
   XYChart as VisxXYChart,
 } from "@visx/xychart";
 
 import { dailySessions, Datum } from "./mock-data/daily-sessions";
 import { XYChart } from "./components/xy-chart";
 import { BarSeries } from "./components/bar-series";
+import { BarStack } from "./components/bar-stack";
 
 function App() {
   const data = dailySessions;
@@ -28,7 +29,7 @@ function App() {
           yScale={{ type: "linear" }}
         >
           <VisxBarSeries
-            dataKey="bar-1"
+            dataKey="visx-simple-bar"
             data={data}
             xAccessor={(d: Datum) => d["date"]}
             yAccessor={(d: Datum) => d["totalVisits"]}
@@ -39,20 +40,20 @@ function App() {
           xScale={{ type: "band", paddingInner: 0.1 }}
           yScale={{ type: "linear" }}
         >
-          <BarStack>
+          <VisxBarStack>
             <VisxBarSeries
-              dataKey="bar-1"
+              dataKey="visx-stack-group1"
               data={data}
               xAccessor={(d: Datum) => d["date"]}
               yAccessor={(d: Datum) => d["specialVisits"]}
             />
             <VisxBarSeries
-              dataKey="bar-2"
+              dataKey="visx-stac-group2"
               data={data}
               xAccessor={(d: Datum) => d["date"]}
               yAccessor={(d: Datum) => d["totalVisits"]}
             />
-          </BarStack>
+          </VisxBarStack>
         </VisxXYChart>
       </section>
       <section>
@@ -65,7 +66,7 @@ function App() {
         >
           <BarSeries
             data={data}
-            dataKey="bar-2-2"
+            dataKey="wrapped-ungrouped-series"
             accessors={{
               value: (d: Datum) => d["totalVisits"],
               dimension: (d: Datum) => d["date"],
@@ -79,20 +80,24 @@ function App() {
           yScale={{ type: "linear" }}
         >
           <BarStack>
-            <BarSeries
+            <VisxBarSeries
+              dataKey="wrapped-stack-special"
               data={data}
-              dataKey="bar-2-1"
-              accessors={{
-                dimension: (d: Datum) => d["date"],
-                value: (d: Datum) => d["specialVisits"],
-              }}
+              xAccessor={(d: Datum) => d["date"]}
+              yAccessor={(d: Datum) => d["specialVisits"]}
             />
+            {/* <VisxBarSeries
+              dataKey="wraped-stack-total"
+              data={data}
+              xAccessor={(d: Datum) => d["date"]}
+              yAccessor={(d: Datum) => d["totalVisits"]}
+            /> */}
             <BarSeries
               data={data}
-              dataKey="bar-2-2"
+              dataKey="wrapped-stack-total"
               accessors={{
-                dimension: (d: Datum) => d["date"],
                 value: (d: Datum) => d["totalVisits"],
+                dimension: (d: Datum) => d["date"],
               }}
             />
           </BarStack>
